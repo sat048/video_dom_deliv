@@ -1,14 +1,17 @@
-var video = document.querySelector("#player1");
+const video = document.querySelector("#player1");
 
 window.addEventListener("load", function() {
 	console.log("Good job opening the window")
-
+	video.autoplay = false;
+	video.pause();
+	video.loop = false;
+	video.volume = document.querySelector("#slider").value / 100;
 });
 
 document.querySelector("#play").addEventListener("click", function() {
 	console.log("Play Video");
 	video.play();
-	document.querySelector("#volume").innerHTML = (video.volume * 100);
+	document.querySelector("#volume").innerHTML = (video.volume * 100) + "%";
 });
 
 document.querySelector("#pause").addEventListener("click", function() {
@@ -35,7 +38,7 @@ document.querySelector("#faster").addEventListener("click", function() {
 document.querySelector("#skip").addEventListener("click", function() {
 	time = video.currentTime;
 	video.currentTime = time + 10;
-	console.log(video.currentTime);
+	console.log("Current location is " + video.currentTime);
 	if (video.currentTime >= video.duration) {video.currentTime = 0}	
 });
 
